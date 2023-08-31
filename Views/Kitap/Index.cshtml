@@ -1,0 +1,70 @@
+﻿@using WebUygulamaProje1.Utility;
+@model List<Kitap>
+
+@if(TempData["basarili"] != null)
+{
+    <h2 class="text-danger">@TempData["basarili"]</h2>
+}
+
+<div class="container">
+    <div class="row pt-3 pb-4">
+        <div>
+            <h1>Kitaplar</h1>
+        </div>
+
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Id</th>
+                <th>Kitap Adı</th>
+                <th>Tanım</th>
+                <th>Yazar</th>
+                <th>Fiyat</th>
+                <th>Kitap Türü</th>
+                @if (User.IsInRole(UserRoles.Role_Admin))
+                {
+                    <th></th>
+                    <th></th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td align="center" valign="middle">
+                        <img src="@item.ResimUrl" style="border-radius:7px; border: 1px solid #bbb9b9; max-height: 275px; max-width: 145px"/>
+                    </td>
+                    <td align="center" valign="middle">@item.Id</td>
+                    <td align="center" valign="middle">@item.KitapAdi</td>
+                    <td align="center" valign="middle">@item.Tanim</td>
+                    <td align="center" valign="middle">@item.Yazar</td>
+                    <td align="center" valign="middle">@item.Fiyat</td>
+                    <td align="center" valign="middle">@item.KitapTuru.Ad</td>
+                    @if (User.IsInRole(UserRoles.Role_Admin))
+                    {
+                        <td align="center" valign="middle">
+                            <a class="btn btn-warning btn-lg" type="button" asp-controller="Kitap"
+                               asp-action="EkleGuncelle" asp-route-id="@item.Id">Güncelle</a>
+                        </td>
+                        <td align="center" valign="middle">
+                            <a class="btn btn-danger btn-lg" type="button" asp-controller="Kitap"
+                               asp-action="Sil" asp-route-id="@item.Id">Sil</a>
+                        </td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </table>
+    @if (User.IsInRole(UserRoles.Role_Admin))
+    {
+        <div class="row pt-3 pb-2">
+            <div>
+                <a class="btn btn-success btn-lg" type="button" asp-controller="Kitap" asp-action="EkleGuncelle"
+                   style="border-radius: 10px">Yeni Kitap Oluştur</a>
+            </div>
+        </div>
+    }    
+</div>

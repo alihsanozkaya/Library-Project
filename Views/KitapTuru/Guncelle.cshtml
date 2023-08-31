@@ -1,0 +1,17 @@
+﻿@model KitapTuru
+
+<form method="post">
+    <div class="border p-3 mt-5">
+        <div class="row pb-3">
+            <h2 class="text-primary">Kitap Türü Güncelle</h2>
+            <hr />
+        </div>
+        <div>
+            <label asp-for="Ad"></label>
+            <input class="form-control" asp-for="Ad" />
+            <span class="text-danger" asp-validation-for="Ad"></span>
+        </div>
+        <button class="btn btn-warning btn-lg mt-2" type="submit" style="border-radius: 10px">Güncelle</button>
+        <a class="btn btn-primary btn-lg mt-2" asp-controller="KitapTuru" asp-action="Index" style="border-radius: 10px">Geri Dön</a>
+    </div>
+</form>
