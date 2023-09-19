@@ -90,6 +90,7 @@ namespace WebUygulamaProje1.Controllers
                 return NotFound() ;
             }
             Kitap? kitap = _kitapRepository.Get(u=> u.Id == id);
+            
             if(kitap == null)
             {
                 return NotFound();
@@ -105,6 +106,7 @@ namespace WebUygulamaProje1.Controllers
                 return NotFound();
             }
             Kitap? kitap = _kitapRepository.Get(u => u.Id == id);
+            
             if(kitap == null)
             {
                 return NotFound();
